@@ -190,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (activeDate) {
         if (days === 0) {
+          1;
         } else {
           activeDate.setDate(activeDate.getDate() + days);
         }
@@ -427,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
   const imageCounter = document.querySelector(".image-counter");
-  const lightboxContent = document.querySelector(".lightbox-content");
+  // const lightboxContent = document.querySelector(".lightbox-content");
 
   const images = [
     "images/p1.jpg",
