@@ -21,7 +21,7 @@ function Header() {
               placeholder="Add guests"
               onClick={toggleExpandedSearch}
             />
-            <button className="search-button">&#128269;</button>
+            <button className="search-button" onClick={toggleExpandedSearch}>&#128269;</button>
           </div>
         </nav>
         <div className="logo">
