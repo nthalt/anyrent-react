@@ -1559,19 +1559,33 @@ footer .other-options-items div {
     margin-left: 30px;
   }
 
+  .amenities {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
   .amenities-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    gap: 10px; /* Adjust the gap as needed */
   }
-
+  
   .amenities-button {
+    margin-top: 20px;
+  }
+  
+  .material-button {
+    background-color: #ff385c;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
   }
+  
 
   .keypad-date-container {
     display: flex;

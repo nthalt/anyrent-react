@@ -6,6 +6,7 @@ import './App.css'
 import PropertyTitleContainer from './components/PropertyTitle';
 import ImageGallery from './components/ImageGallery';
 import PropertyDetails from './components/PropertyDetails'
+import AmenitiesList from './components/Amenities';
 
 const property = {
   title: "Entire rental unit in Lima, Peru",
@@ -46,6 +47,7 @@ function App() {
       <PropertyTitleContainer />
       <ImageGallery />
       <PropertyDetails property={property} />
+      <AmenitiesList />
     </div>
   );
 }
