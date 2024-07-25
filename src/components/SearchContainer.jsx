@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import WhereModal from "./WhereModal";
 import CalendarModal from "./CalendarModal";
+import GuestModal from "./GuestModal";
 
 const SearchContainer = () => {
   const [isWhereModalOpen, setIsWhereModalOpen] = useState(false);
@@ -12,14 +13,15 @@ const SearchContainer = () => {
   const [guestCount, setGuestCount] = useState("Add guests");
   const [activeButton, setActiveButton] = useState(null);
 
+  const guestBtnRef = useRef(null);
+
   const openWhereModal = () => {
     setIsWhereModalOpen(true);
-    console.log("Opening Where Modal");
+    setIsGuestModalOpen(false);
   };
 
   const closeWhereModal = () => {
     setIsWhereModalOpen(false);
-    console.log("Closing Where Modal");
   };
 
   const handleDestinationSelect = (selectedDestination) => {
@@ -29,13 +31,12 @@ const SearchContainer = () => {
 
   const openCalendarModal = (buttonType) => {
     setIsCalendarModalOpen(true);
+    setIsGuestModalOpen(false);
     setActiveButton(buttonType);
-    console.log("Opening Calendar Modal");
   };
 
   const closeCalendarModal = () => {
     setIsCalendarModalOpen(false);
-    console.log("Closing Calendar Modal");
   };
 
   const handleDateSelect = (type, date) => {
@@ -46,25 +47,33 @@ const SearchContainer = () => {
     }
   };
 
-  const openGuestModal = () => {
-    setIsGuestModalOpen(true);
-    console.log("Opening Guest Modal");
-  };
-
-  const closeGuestModal = () => {
-    setIsGuestModalOpen(false);
-    console.log("Closing Guest Modal");
+  const toggleGuestModal = () => {
+    setIsGuestModalOpen((prev) => !prev);
+    setIsWhereModalOpen(false);
+    setIsCalendarModalOpen(false);
   };
 
   const handleGuestCountUpdate = (count) => {
-    setGuestCount(count);
-    closeGuestModal();
+    setGuestCount(`${count} ${count === 1 ? 'guest' : 'guests'}`);
   };
 
   const handleSearch = () => {
     console.log("Search button clicked");
     // Implement search functionality here in future
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (guestBtnRef.current && !guestBtnRef.current.contains(event.target)) {
+        setIsGuestModalOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="search-container">
@@ -88,14 +97,18 @@ const SearchContainer = () => {
         <span>Check out</span>
         <strong>{checkOutDate}</strong>
       </div>
-      <div className="search-item" id="addguest-btn" onClick={openGuestModal}>
+      <div
+        className="search-item"
+        id="addguest-btn"
+        onClick={toggleGuestModal}
+        ref={guestBtnRef}
+      >
         <span>Who</span>
         <strong>{guestCount}</strong>
       </div>
       <button className="search-button-hidden" onClick={handleSearch}>
         Search
       </button>
-
       <WhereModal
         isOpen={isWhereModalOpen}
         onClose={closeWhereModal}
@@ -107,7 +120,12 @@ const SearchContainer = () => {
         onSelect={handleDateSelect}
         activeButton={activeButton}
       />
-      {/* Add GuestModal component here in future */}
+      <GuestModal
+        isOpen={isGuestModalOpen}
+        onClose={() => setIsGuestModalOpen(false)}
+        onGuestCountUpdate={handleGuestCountUpdate}
+        buttonRef={guestBtnRef}
+      />
     </div>
   );
 };
