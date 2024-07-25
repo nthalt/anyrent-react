@@ -1,5 +1,5 @@
-// import React;
-import { useState, useEffect } from "react";
+// import React from "react";
+import { useState, useEffect ,useRef } from "react";
 import PropTypes from "prop-types";
 
 const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
@@ -7,6 +7,9 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(null);
   const [activeTab, setActiveTab] = useState("Dates");
   const [calendars, setCalendars] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const modalRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -23,6 +26,44 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
       setCalendars([currentMonth, nextMonth]);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isOpen, onClose]);
+
+  const navigateMonth = (direction) => {
+    setCurrentDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(prevDate.getMonth() + direction);
+      return newDate;
+    });
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      const currentMonth = generateCalendarData(
+        currentDate.getFullYear(),
+        currentDate.getMonth()
+      );
+      const nextMonth = generateCalendarData(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1
+      );
+      setCalendars([currentMonth, nextMonth]);
+    }
+  }, [isOpen, currentDate]);
 
   const generateCalendarData = (year, month) => {
     const firstDay = new Date(year, month, 1);
@@ -88,14 +129,21 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
       const selectedDate = new Date(event.target.dataset.date);
       if (activeButton === "check-in") {
         setSelectedCheckInDate(selectedDate);
+        if (selectedCheckOutDate && selectedDate > selectedCheckOutDate) {
+          setSelectedCheckOutDate(null);
+        }
       } else {
+        if (selectedCheckInDate && selectedDate < selectedCheckInDate) {
+          alert("Check-out date must be after check-in date");
+          return;
+        }
         setSelectedCheckOutDate(selectedDate);
       }
       highlightSelectedDates();
       updateDateDisplay();
+      onClose(); // Close the modal after selection
     }
   };
-
   const handleDateOptionClick = (days) => {
     let activeDate =
       activeButton === "check-in" ? selectedCheckInDate : selectedCheckOutDate;
@@ -153,11 +201,11 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
     });
   };
 
-//   if (!isOpen) return null;
+  //   if (!isOpen) return null;
 
   return (
     // <div className="calendar-modal">
-    <div className={`calendar-modal ${isOpen ? 'is-open' : ''}`}>
+    <div className={`calendar-modal ${isOpen ? "is-open" : ""}`} ref={modalRef}>
       <button onClick={onClose} className="close-button-calendar">
         Close
       </button>
@@ -171,6 +219,10 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
             {tab}
           </button>
         ))}
+      </div>
+      <div className="calendar-navigation">
+        <button onClick={() => navigateMonth(-1)}>&larr;</button>
+        <button onClick={() => navigateMonth(1)}>&rarr;</button>
       </div>
       <div className="calendar-container" onClick={handleDateClick}>
         {console.log("Rendering calendars:", calendars)}
@@ -192,10 +244,10 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
 };
 
 CalendarModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  activeButton: PropTypes.string,
-};
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    activeButton: PropTypes.string,
+  };
 
 export default CalendarModal;

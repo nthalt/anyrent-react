@@ -310,6 +310,20 @@ hr {
   border-radius: 20px;
 }
 
+
+.calendar-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.calendar-navigation button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .calendar-container {
   display: flex;
   gap: 20px;
