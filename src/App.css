@@ -865,7 +865,6 @@ main {
 }
 /* lightbox ended */
 
-
 /* property-details-container start */
 .property-details-container {
   margin: 0 auto;
@@ -1102,19 +1101,6 @@ h1 {
   font-size: 16px;
 }
 
-.review-detail {
-  display: flex;
-  gap: 15px;
-}
-
-.other-review-button {
-  background: none;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .map {
   width: 150%;
   height: 100%;
@@ -1175,7 +1161,18 @@ h1 {
   font-weight: bold;
   font-size: 18px;
 }
+.review-detail {
+  display: flex;
+  gap: 15px;
+}
 
+.other-review-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+}
 .rating {
   color: #555;
   font-size: 14px;
@@ -1564,18 +1561,18 @@ footer .other-options-items div {
     max-width: 1200px;
     padding: 20px;
   }
-  
+
   .amenities-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     gap: 10px; /* Adjust the gap as needed */
   }
-  
+
   .amenities-button {
     margin-top: 20px;
   }
-  
+
   .material-button {
     background-color: #ff385c;
     color: white;
@@ -1585,7 +1582,6 @@ footer .other-options-items div {
     cursor: pointer;
     font-size: 16px;
   }
-  
 
   .keypad-date-container {
     display: flex;

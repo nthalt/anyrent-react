@@ -141,7 +141,7 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
       }
       highlightSelectedDates();
       updateDateDisplay();
-      onClose(); // Close the modal after selection
+      // onClose(); // Close the modal after selection
     }
   };
   const handleDateOptionClick = (days) => {

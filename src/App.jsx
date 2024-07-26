@@ -3,10 +3,16 @@ import Header from './components/Header';
 // import Main from './components/Main';
 // import Footer from './components/Footer';
 import './App.css'
+import './GenerateCalendar.css';
+import './Reviews.css';
+
 import PropertyTitleContainer from './components/PropertyTitle';
 import ImageGallery from './components/ImageGallery';
 import PropertyDetails from './components/PropertyDetails'
 import AmenitiesList from './components/Amenities';
+// import GenerateCalendar from './components/GenerateCalendar';
+import Calendar from './components/Calendar';
+import Reviews from './components/Reviews';
 
 const property = {
   title: "Entire rental unit in Lima, Peru",
@@ -48,6 +54,9 @@ function App() {
       <ImageGallery />
       <PropertyDetails property={property} />
       <AmenitiesList />
+      {/* <GenerateCalendar /> */}
+      <Calendar />
+      <Reviews />
     </div>
   );
 }
