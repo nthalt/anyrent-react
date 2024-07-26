@@ -1,10 +1,11 @@
-
 const Reviews = () => {
   return (
     <div className="reviews">
-      <br /><br />
+      <br />
+      <br />
       <hr />
-      <br /><br />
+      <br />
+      <br />
       <h3>No reviews (yet)</h3>
       <div className="review-detail">
         <div className="review-detail-icon">

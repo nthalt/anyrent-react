@@ -1,31 +1,30 @@
 .reviews {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .review-detail {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .review-detail-icon button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .other-review {
-    display: flex;
-    align-items: center;
-  }
-  
-  .other-review-button {
-    background: none;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 10px;
-  }
-  
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.review-detail {
+  display: flex;
+  gap: 15px;
+}
+
+.review-detail-icon button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.other-review {
+  display: flex;
+  align-items: center;
+}
+
+.other-review-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
