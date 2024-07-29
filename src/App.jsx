@@ -1,3 +1,4 @@
+// src/App.js
 import { useState, useEffect } from "react";
 import { fetchHotelDetails, fetchRooms } from "./services/api";
 
@@ -12,8 +13,10 @@ import Location from "./components/Location";
 import HostDetailInfo from "./components/HostDetailInfo";
 import ThingsToKnow from "./components/ThingsToKnow";
 import Footer from "./components/Footer";
+import ShimmerLoader from "./components/ShimmerLoader"; // Import ShimmerLoader
 
 import "./App.css";
+import "./ShimmerLoader.css";
 import "./PropertyDetails.css";
 import "./ImageGallery.css";
 import "./GenerateCalendar.css";
@@ -64,11 +67,20 @@ function App() {
     const fetchData = async () => {
       try {
         const hotelSlug = "mountain-view-cabin";
-        const hotelDetails = await fetchHotelDetails(hotelSlug);
-        setHotelData(hotelDetails);
 
-        const roomsData = await fetchRooms(hotelSlug);
-        setRooms(roomsData);
+        setTimeout(async () => {
+          const hotelDetails = await fetchHotelDetails(hotelSlug);
+          setHotelData(hotelDetails);
+
+          const roomsData = await fetchRooms(hotelSlug);
+          setRooms(roomsData);
+        }, 1200);
+
+        // const hotelDetails = await fetchHotelDetails(hotelSlug);
+        // setHotelData(hotelDetails);
+
+        // const roomsData = await fetchRooms(hotelSlug);
+        // setRooms(roomsData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -78,7 +90,7 @@ function App() {
   }, []);
 
   if (!hotelData) {
-    return <div>Loading...</div>;
+    return <ShimmerLoader />; // Use ShimmerLoader here
   }
 
   return (
