@@ -51,7 +51,7 @@ To set up the project locally, follow these steps:
 To run the development server:
 
 ```
-npm start
+npm run dev
 ```
 
 This will start the application on `http://localhost:3000`.
