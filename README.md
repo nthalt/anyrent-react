@@ -4,7 +4,7 @@
 
 AnyRent is a full-stack application that displays hotel details, allowing users to browse and book various types of accommodations. This repository contains the React frontend for the AnyRent platform.
 
-The frontend provides a user-friendly interface for guests to view detailed information about properties, including descriptions, images, amenities, host information, and booking capabilities. It's designed to work in conjunction with a backend API that serves data from a PostgreSQL database.
+The frontend provides a user-friendly interface for guests to view detailed information about properties, including descriptions, images, amenities, host information, and booking capabilities. It's designed to work in conjunction with a backend nodeJS API that serves data from a PostgreSQL database.
 
 ## Features
 
@@ -47,7 +47,7 @@ To set up the project locally, follow these steps:
     };
 
     export default config;
-};
+    };
    ```
    Replace the URL with your actual backend API URL.
 
