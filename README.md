@@ -40,9 +40,14 @@ To set up the project locally, follow these steps:
    npm install
    ```
 
-4. Create a `.env` file in the root directory and add the following environment variable:
+4. Create a `config.js` file in the root directory and add the following environment variable:
    ```
-   REACT_APP_API_BASE_URL=http://localhost:5000/api
+    const config = {
+        apiBaseUrl: "http://localhost:3000",
+    };
+
+    export default config;
+};
    ```
    Replace the URL with your actual backend API URL.
 
@@ -55,12 +60,6 @@ npm run dev
 ```
 
 This will start the application on `http://localhost:3000`.
-
-To build the project for production:
-
-```
-npm run build
-```
 
 ## Project Structure
 
