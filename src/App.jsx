@@ -14,6 +14,7 @@ import ThingsToKnow from "./components/ThingsToKnow";
 import Footer from "./components/Footer";
 
 import "./App.css";
+import "./PropertyDetails.css";
 import "./ImageGallery.css";
 import "./GenerateCalendar.css";
 import "./Reviews.css";

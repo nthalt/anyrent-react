@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-// import './PropertyDetails.css'; // Ensure you create this CSS file based on the provided styles
+import config from "../config";
 
 const PropertyDetails = ({ hotelData, property }) => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [guestCount, setGuestCount] = useState("1 guest");
+  const [processedRooms, setProcessedRooms] = useState([]);
+
+  useEffect(() => {
+    const updatedRooms = hotelData.rooms.map((room) => ({
+      ...room,
+      room_image: `${config.apiBaseUrl}${room.room_image}`,
+    }));
+    setProcessedRooms(updatedRooms);
+  }, [hotelData.rooms]);
 
   const subtitle = `${hotelData.guest_count} guests · ${
     hotelData.bedroom_count
@@ -46,7 +55,7 @@ const PropertyDetails = ({ hotelData, property }) => {
           <div className="feature" key={index}>
             <img src={feature.icon} alt={feature.title} />
             <p>
-              <b>{hotelData.host_information.name}</b>
+              <b>{feature.title}</b>
             </p>
             <p>{feature.description}</p>
           </div>
@@ -71,12 +80,26 @@ const PropertyDetails = ({ hotelData, property }) => {
         </div>
         <br />
         <hr />
-        <div className="bedroom">
+        <div className="bedrooms">
           <h2>Where you&apos;ll sleep</h2>
           <br />
-          <img src={property.bedroom.image} alt="Bedroom" />
-          <p>{property.bedroom.type}</p>
-          <p>{subtitle}</p>
+          <div className="rooms-grid">
+            {processedRooms.map((room) => (
+              <div key={room.id} className="room-card">
+                <img
+                  src={room.room_image}
+                  alt={room.room_title}
+                  onError={(e) =>
+                    console.error("Error loading image:", e.target.src)
+                  }
+                />
+                <h3>{room.room_title}</h3>
+                <p>
+                  {room.bedroom_count} bed{room.bedroom_count > 1 ? "s" : ""}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <aside className="booking-widget">
@@ -145,8 +168,8 @@ PropertyDetails.propTypes = {
       phone: PropTypes.string.isRequired,
     }).isRequired,
     address: PropTypes.string.isRequired,
-    latitude: PropTypes.string.isRequired, // Changed to string to match API response
-    longitude: PropTypes.string.isRequired, // Changed to string to match API response
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
     rooms: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -178,11 +201,6 @@ PropertyDetails.propTypes = {
       })
     ).isRequired,
     description: PropTypes.string.isRequired,
-    bedroom: PropTypes.shape({
-      image: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      details: PropTypes.string.isRequired,
-    }).isRequired,
     guestsOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
 };
