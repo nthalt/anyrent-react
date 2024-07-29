@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 
-const HostDetailInfo = () => {
+const HostDetailInfo = ({ hotelData }) => {
   return (
     <div className="host-detail-info">
         <br /><br /><hr /><br /><br />
@@ -10,7 +11,7 @@ const HostDetailInfo = () => {
             <div className="profile-image">
               <img src="images/host.jpg" alt="Fernando" />
               <div className="heart-icon">❤️</div>
-              <h2 className="profile-name">Fernando</h2>
+              <h2 className="profile-name">{ hotelData.host_information.name }</h2>
               <div className="profile-badge">Superhost</div>
             </div>
             <div className="profile-stats">
@@ -48,7 +49,7 @@ const HostDetailInfo = () => {
         <div>
           <div className="superhost-info">
             <br />
-            <h3>Fernando is a Superhost</h3>
+            <h3>{ hotelData.host_information.name }</h3>
             <p>
               Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
             </p>
@@ -80,5 +81,38 @@ const HostDetailInfo = () => {
     </div>
   );
 };
+
+HostDetailInfo.propTypes = {
+  hotelData: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    guest_count: PropTypes.number.isRequired,
+    bedroom_count: PropTypes.number.isRequired,
+    bathroom_count: PropTypes.number.isRequired,
+    amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    host_information: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+    }).isRequired,
+    address: PropTypes.string.isRequired,
+    latitude: PropTypes.string.isRequired, // Changed to string to match API response
+    longitude: PropTypes.string.isRequired, // Changed to string to match API response
+    rooms: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        hotel_slug: PropTypes.string.isRequired,
+        room_slug: PropTypes.string.isRequired,
+        room_image: PropTypes.string.isRequired,
+        room_title: PropTypes.string.isRequired,
+        bedroom_count: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+
+};
+
 
 export default HostDetailInfo;

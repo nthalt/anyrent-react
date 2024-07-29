@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ShareModal from './ShareModal'; // Ensure the path is correct to your ShareModal component
 
-const PropertyTitleContainer = () => {
+const PropertyTitleContainer = ({ title }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const PropertyTitleContainer = () => {
 
   return (
     <div className="property-title-container">
-      <h1 className="title">Comfy New Apt. in Pueblo Libre!</h1>
+      <h1 className="title">{title}</h1>
       <div className="action-button-container">
         <div className="action-button" id="action-button-share" onClick={openShareModal}>
           <svg

@@ -1,4 +1,5 @@
-// import { useState } from 'react'
+import { useState, useEffect } from "react";
+import { fetchHotelDetails, fetchRooms } from "./services/api";
 
 import Header from "./components/Header";
 import PropertyTitleContainer from "./components/PropertyTitle";
@@ -13,6 +14,7 @@ import ThingsToKnow from "./components/ThingsToKnow";
 import Footer from "./components/Footer";
 
 import "./App.css";
+import "./ImageGallery.css";
 import "./GenerateCalendar.css";
 import "./Reviews.css";
 import "./Location.css";
@@ -54,17 +56,41 @@ const property = {
 };
 
 function App() {
+  const [hotelData, setHotelData] = useState(null);
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const hotelSlug = "mountain-view-cabin";
+        const hotelDetails = await fetchHotelDetails(hotelSlug);
+        setHotelData(hotelDetails);
+
+        const roomsData = await fetchRooms(hotelSlug);
+        setRooms(roomsData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!hotelData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
       <Header />
-      <PropertyTitleContainer />
-      <ImageGallery />
-      <PropertyDetails property={property} />
-      <AmenitiesList />
+      <PropertyTitleContainer title={hotelData.title} />
+      <ImageGallery images={hotelData.images} />
+      <PropertyDetails hotelData={hotelData} property={property} />
+      <AmenitiesList amenities={hotelData.amenities} />
       <Calendar />
       <Reviews />
-      <Location />
-      <HostDetailInfo />
+      <Location address={hotelData.address} />
+      <HostDetailInfo hotelData={hotelData} />
       <ThingsToKnow />
       <Footer />
     </div>
