@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"; // Replace with your backend URL
+const API_URL = "http://localhost:3000";
 
 export const fetchHotelDetails = async (slug) => {
   try {
@@ -21,5 +21,3 @@ export const fetchRooms = async (hotelSlug) => {
     throw error;
   }
 };
-
-// Add more API calls as needed

@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
 
-
-const Location = ( { address}) => {
+const Location = ({ address }) => {
   return (
     <div className="location">
-      <br /><br />
+      <br />
+      <br />
       <hr />
-      <br /><br />
+      <br />
+      <br />
       <h3>Where you&apos;ll be</h3>
       <br />
-      <p>{ address }</p>
+      <p>{address}</p>
       <br />
       <div className="map">
         <iframe
@@ -31,37 +32,7 @@ const Location = ( { address}) => {
 };
 
 Location.propTypes = {
-  hotelData: PropTypes.shape({
-    slug: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    guest_count: PropTypes.number.isRequired,
-    bedroom_count: PropTypes.number.isRequired,
-    bathroom_count: PropTypes.number.isRequired,
-    amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host_information: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-    }).isRequired,
-    address: PropTypes.string.isRequired,
-    latitude: PropTypes.string.isRequired, // Changed to string to match API response
-    longitude: PropTypes.string.isRequired, // Changed to string to match API response
-    rooms: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        hotel_slug: PropTypes.string.isRequired,
-        room_slug: PropTypes.string.isRequired,
-        room_image: PropTypes.string.isRequired,
-        room_title: PropTypes.string.isRequired,
-        bedroom_count: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-
+  address: PropTypes.string.isRequired,
 };
-
-
 
 export default Location;

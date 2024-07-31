@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import ShareModal from './ShareModal'; // Ensure the path is correct to your ShareModal component
+import PropTypes from "prop-types";
+
+import { useState } from "react";
+import ShareModal from "./ShareModal";
 
 const PropertyTitleContainer = ({ title }) => {
   const [isSaved, setIsSaved] = useState(false);
@@ -21,7 +23,11 @@ const PropertyTitleContainer = ({ title }) => {
     <div className="property-title-container">
       <h1 className="title">{title}</h1>
       <div className="action-button-container">
-        <div className="action-button" id="action-button-share" onClick={openShareModal}>
+        <div
+          className="action-button"
+          id="action-button-share"
+          onClick={openShareModal}
+        >
           <svg
             className="action-icon"
             viewBox="0 0 24 24"
@@ -34,7 +40,7 @@ const PropertyTitleContainer = ({ title }) => {
           <span className="action-text">Share</span>
         </div>
         <div
-          className={`action-button ${isSaved ? 'saved' : ''}`}
+          className={`action-button ${isSaved ? "saved" : ""}`}
           id="action-button-save"
           onClick={toggleSave}
         >
@@ -45,9 +51,7 @@ const PropertyTitleContainer = ({ title }) => {
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-            />
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
           <span className="action-text">Save</span>
         </div>
@@ -55,6 +59,10 @@ const PropertyTitleContainer = ({ title }) => {
       <ShareModal isOpen={isShareModalOpen} onClose={closeShareModal} />
     </div>
   );
+};
+
+PropertyTitleContainer.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default PropertyTitleContainer;

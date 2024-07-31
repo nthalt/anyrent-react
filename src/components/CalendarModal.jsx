@@ -1,5 +1,4 @@
-// import React from "react";
-import { useState, useEffect ,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
@@ -201,8 +200,6 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
     });
   };
 
-  //   if (!isOpen) return null;
-
   return (
     // <div className="calendar-modal">
     <div className={`calendar-modal ${isOpen ? "is-open" : ""}`} ref={modalRef}>
@@ -244,10 +241,10 @@ const CalendarModal = ({ isOpen, onClose, onSelect, activeButton }) => {
 };
 
 CalendarModal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onSelect: PropTypes.func.isRequired,
-    activeButton: PropTypes.string,
-  };
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  activeButton: PropTypes.string,
+};
 
 export default CalendarModal;

@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-// import React from 'react';
-// import './Amenities.css';
 
 const Amenities = ({ amenities }) => {
   const amenityIcons = {
@@ -56,34 +54,7 @@ const Amenities = ({ amenities }) => {
 };
 
 Amenities.propTypes = {
-  hotelData: PropTypes.shape({
-    slug: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    guest_count: PropTypes.number.isRequired,
-    bedroom_count: PropTypes.number.isRequired,
-    bathroom_count: PropTypes.number.isRequired,
-    amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host_information: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-    }).isRequired,
-    address: PropTypes.string.isRequired,
-    latitude: PropTypes.string.isRequired, // Changed to string to match API response
-    longitude: PropTypes.string.isRequired, // Changed to string to match API response
-    rooms: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        hotel_slug: PropTypes.string.isRequired,
-        room_slug: PropTypes.string.isRequired,
-        room_image: PropTypes.string.isRequired,
-        room_title: PropTypes.string.isRequired,
-        bedroom_count: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
+  amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Amenities;

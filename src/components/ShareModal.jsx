@@ -1,20 +1,21 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const ShareModal = ({ isOpen, onClose }) => {
   const handleCopyLink = () => {
     const url = window.location.href;
-    navigator.clipboard.writeText(url)
+    navigator.clipboard
+      .writeText(url)
       .then(() => {
-        console.log('Link copied to clipboard');
-        alert('Link copied to clipboard');
+        console.log("Link copied to clipboard");
+        alert("Link copied to clipboard");
       })
       .catch((error) => {
-        console.error('Error copying link to clipboard: ', error);
+        console.error("Error copying link to clipboard: ", error);
       });
   };
 
   const handleOutsideClick = (event) => {
-    if (event.target.className === 'sharemodal') {
+    if (event.target.className === "sharemodal") {
       onClose();
     }
   };
@@ -24,16 +25,20 @@ const ShareModal = ({ isOpen, onClose }) => {
   return (
     <div className="sharemodal" id="shareModal" onClick={handleOutsideClick}>
       <div className="sharemodal-content">
-        <span className="close" onClick={onClose}>&times;</span>
+        <span className="close" onClick={onClose}>
+          &times;
+        </span>
         <h2>Share this place</h2>
         <div className="property-preview">
           <img
             src="images/p1.jpg"
             alt="Property Image"
-            style={{ height: '10%', width: '10%', size: '20%' }}
+            style={{ height: "10%", width: "10%", size: "20%" }}
           />
           <h1 className="house-info">Entire rental unit in Lima, Peru</h1>
-          <span className="rating">&#9733; <b>New</b></span>
+          <span className="rating">
+            &#9733; <b>New</b>
+          </span>
           <p className="subtitle">2 guests · 1 bedroom · 1 bed · 1 bath</p>
         </div>
         <div className="share-options">

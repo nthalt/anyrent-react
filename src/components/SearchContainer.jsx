@@ -54,12 +54,11 @@ const SearchContainer = () => {
   };
 
   const handleGuestCountUpdate = (count) => {
-    setGuestCount(`${count} ${count === 1 ? 'guest' : 'guests'}`);
+    setGuestCount(`${count} ${count === 1 ? "guest" : "guests"}`);
   };
 
   const handleSearch = () => {
     console.log("Search button clicked");
-    // Implement search functionality here in future
   };
 
   useEffect(() => {
@@ -69,9 +68,9 @@ const SearchContainer = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 

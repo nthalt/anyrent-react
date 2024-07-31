@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-// import '/home/w3e24/dev/anyrent-react/src/GenerateCalendar.css';
 
 const GenerateCalendar = ({ initialDate, onDateSelect }) => {
   const [currentDate, setCurrentDate] = useState(initialDate || new Date());
@@ -19,7 +18,6 @@ const GenerateCalendar = ({ initialDate, onDateSelect }) => {
   }, [currentDate]);
 
   const generateCalendarData = (year, month) => {
-    // ... (keep this function as is from your original code)
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
@@ -49,7 +47,6 @@ const GenerateCalendar = ({ initialDate, onDateSelect }) => {
   };
 
   const renderCalendar = (calendarData) => {
-    // ... (keep this function as is, but remove the onClick handler)
     const { year, month, days, startingDay } = calendarData;
 
     return (

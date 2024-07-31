@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { useCallback } from "react";
 
 const GuestModal = ({ isOpen, onClose, onGuestCountUpdate, buttonRef }) => {
@@ -21,7 +21,11 @@ const GuestModal = ({ isOpen, onClose, onGuestCountUpdate, buttonRef }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
         onClose();
       }
     };
@@ -36,7 +40,6 @@ const GuestModal = ({ isOpen, onClose, onGuestCountUpdate, buttonRef }) => {
     };
   }, [isOpen, onClose, buttonRef, positionModal]);
 
-  
   const handleIncrement = (type, e) => {
     e.stopPropagation();
     setGuestCounts((prev) => ({
@@ -112,10 +115,10 @@ const getSubtitle = (type) => {
 };
 
 GuestModal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onGuestCountUpdate: PropTypes.func.isRequired,
-    buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  };
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onGuestCountUpdate: PropTypes.func.isRequired,
+  buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+};
 
 export default GuestModal;

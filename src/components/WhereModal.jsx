@@ -1,5 +1,4 @@
-// import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const WhereModal = ({ isOpen, onClose, onSelect }) => {
   const regions = [
@@ -17,7 +16,7 @@ const WhereModal = ({ isOpen, onClose, onSelect }) => {
   };
 
   const handleOutsideClick = (event) => {
-    if (event.target.className === 'modal') {
+    if (event.target.className === "modal") {
       onClose();
     }
   };
@@ -27,7 +26,9 @@ const WhereModal = ({ isOpen, onClose, onSelect }) => {
   return (
     <div id="whereModal" className="modal" onClick={handleOutsideClick}>
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
+        <span className="close" onClick={onClose}>
+          &times;
+        </span>
         <h2>Search by region</h2>
         <div className="region-grid">
           {regions.map((region, index) => (

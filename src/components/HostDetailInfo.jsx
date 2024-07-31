@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 const HostDetailInfo = ({ hotelData }) => {
   return (
     <div className="host-detail-info">
-        <br /><br /><hr /><br /><br />
+      <br />
+      <br />
+      <hr />
+      <br />
+      <br />
       <div className="host-card-container">
         <h1>Meet your Host</h1>
         <div className="profile-card">
@@ -11,7 +15,9 @@ const HostDetailInfo = ({ hotelData }) => {
             <div className="profile-image">
               <img src="images/host.jpg" alt="Fernando" />
               <div className="heart-icon">❤️</div>
-              <h2 className="profile-name">{ hotelData.host_information.name }</h2>
+              <h2 className="profile-name">
+                {hotelData.host_information.name}
+              </h2>
               <div className="profile-badge">Superhost</div>
             </div>
             <div className="profile-stats">
@@ -31,7 +37,7 @@ const HostDetailInfo = ({ hotelData }) => {
           </div>
         </div>
         <div className="host-details">
-            <br />
+          <br />
           <div className="detail-item">
             <img src="images/host.jpg" alt="" />
             <span>Born in the 80s</span>
@@ -42,16 +48,18 @@ const HostDetailInfo = ({ hotelData }) => {
           </div>
           <br />
           <p>
-            Hello world! I love traveling and I also love welcoming guests in my home country, Perú, meeting new...
+            Hello world! I love traveling and I also love welcoming guests in my
+            home country, Perú, meeting new...
           </p>
           <a href="#">Show more &gt;</a>
         </div>
         <div>
           <div className="superhost-info">
             <br />
-            <h3>{ hotelData.host_information.name }</h3>
+            <h3>{hotelData.host_information.name}</h3>
             <p>
-              Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
+              Superhosts are experienced, highly rated hosts who are committed
+              to providing great stays for guests.
             </p>
           </div>
           <br />
@@ -68,10 +76,11 @@ const HostDetailInfo = ({ hotelData }) => {
           </div>
         </div>
         <div className="host-details">
-            <br />
+          <br />
           <h3>Host details</h3>
           <p>
-            Response rate: 100%<br />
+            Response rate: 100%
+            <br />
             Responds within an hour
           </p>
         </div>
@@ -98,8 +107,8 @@ HostDetailInfo.propTypes = {
       phone: PropTypes.string.isRequired,
     }).isRequired,
     address: PropTypes.string.isRequired,
-    latitude: PropTypes.string.isRequired, // Changed to string to match API response
-    longitude: PropTypes.string.isRequired, // Changed to string to match API response
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
     rooms: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -111,8 +120,6 @@ HostDetailInfo.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-
 };
-
 
 export default HostDetailInfo;
